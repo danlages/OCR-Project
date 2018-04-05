@@ -11,8 +11,8 @@ numClasses = 10
 sizeOfAnalysis = 100 #Determines the batch size of the dataset that will be analysed at a given time.
 
 #Width and hieght of the network
-y = tFlow.placeholder('float32')
-x = tFlow.placeholder('float32' ,[None, 784]) #The data is reduced to a matrix of 28 by 28 to be processed (784)
+y = tFlow.placeholder(tFlow.float32)
+x = tFlow.placeholder(tFlow.float32 ,[None, 784]) #The data is reduced to a matrix of 28 by 28 to be processed (784)
 
 def networkImplementation(data):
     layer1 = {'weights' : tFlow.Variable(tFlow.random_normal([784, nodesLayer1])), #Implement Weights
@@ -29,7 +29,6 @@ def networkImplementation(data):
 
 
     #(input * weights) + biases
-
     firstLayer = tFlow.add(tFlow.matmul(data, layer1['weights']), layer1['biases'])
     firstLayer = tFlow.nn.relu(firstLayer) #Rectified linear activation function
 
@@ -44,6 +43,7 @@ def networkImplementation(data):
     return outputLayer
 
 def train(input):
+
     prediction = networkImplementation(x) #Runs neural network model
     costOfError = tFlow.reduce_mean(tFlow.nn.softmax_cross_entropy_with_logits(logits = prediction, labels = y)) #Cost function - difference between desired result and actual preditcion - the desired result is the lable associated with the dataset
 
@@ -53,6 +53,7 @@ def train(input):
 
     tFlowSession = tFlow.InteractiveSession()
     tFlow.global_variables_initializer().run()
+    saver = tFlow.train.Saver()
 
     iterate = 0
     while iterate < 10:
@@ -64,6 +65,8 @@ def train(input):
         iterate = iterate + 1
         print('Epoch:', iterate, 'out of', epochsToRun, ' Margin of Error:', epochUsed)
 
+    save_path = saver.save(tFlowSession, '/Users/daniellages/Documents/Computer Science/Year 3/OCR/OCR-Project/ocrModel.ckpt')
+    print ("Save Location: ", save_path)
     correct = tFlow.equal(tFlow.argmax(prediction,1),tFlow.argmax(y, 1))
     accuracy = tFlow.reduce_mean(tFlow.cast(correct, 'float'))
 
