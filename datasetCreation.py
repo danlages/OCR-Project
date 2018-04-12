@@ -1,8 +1,8 @@
 images = []
 labels = []
 
-datasetAPath = "/Users/daniellages/Documents/Computer Science/Year 3/OCR/OCR-Project/aInput/"
-datasetBPath = "/Users/daniellages/Documents/Computer Science/Year 3/OCR/OCR-Project/bInput/"
+datasetAPath = ""
+datasetBPath = ""
 def defineData(imageList, labelList):
     directoryAList = os.listdir(datasetAPath)
     directoryBList = os.listdir(datasetBPath)
