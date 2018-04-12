@@ -1,24 +1,22 @@
-datasetPath = ""
-
 images = []
 labels = []
 
+datasetAPath = "/Users/daniellages/Documents/Computer Science/Year 3/OCR/OCR-Project/aInput/"
+datasetBPath = "/Users/daniellages/Documents/Computer Science/Year 3/OCR/OCR-Project/bInput/"
+def defineData(imageList, labelList):
+    directoryAList = os.listdir(datasetAPath)
+    directoryBList = os.listdir(datasetBPath)
+    for file in directoryAList:
+        if file.endswith('.png'):
+            img = os.path.join(datasetAPath, file)
+            image = io.imread(img)
+            imageList.append(image)
+            labelList.append(1)
+    for file in directoryBList:
+        if file.endswith('.png'):
+            img = os.path.join(datasetBPath, file)
+            image = io.imread(img)
+            imageList.append(image)
+            labelList.append(2)
 
-def defineData(images, labels):
-    directoryList = os.listdir(datasetPath)
-    for file in directoryList:
-        if file.endswith(".jpeg") or file.endswith(".jpg") or file.endswith(".JPG"):
-            images.append(os.path.join(datasetPath, file))
-            labels.append("a")
-    return images, labels
-
-def defineDataset(filename, label):
-    imageAsString = tFlow.read_file(str(filename))
-    imageData = tFlow.image.decode_png(imageAsString, channels = 1)
-    image = tFlow.cast(imageData, tFlow.float32)
-    return image, label
-
-images, lables = defineData(images, labels)
-
-dataset = tFlow.data.Dataset.from_tensor_slices((images, labels))
-dataset = dataset.map(defineDataset)
+    return imageList, labelList
