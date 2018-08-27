@@ -6,13 +6,18 @@ The aim of this project is to demonstrate an understanding of neural networks an
 
 # Objectives 
 • The project must demonstrate a knowledge of neural networks and how they operate
+
 • The project must explain and demonstrate how neural networks can be trained to improve the ability to recognize handwritten characters. This will be achieved through the facilitation
 of existing datasets.
+
 • The project must demonstrate the various OCR practices that need to be implemented in
 order to optimise character recognition, such as pre-processing.
+
 • The resulting program must be able to classify individual handwritten characters through the
 use of a neural network.
+
 • Different neural networks are created to compare the ability to achieve optical character
 recognition between them.
+
 • A dataset is created and used to train the neural network, with the aim of achieving optical
 character recognition
