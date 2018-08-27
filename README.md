@@ -1,6 +1,8 @@
 # Using Neural Networks to Achieve Optical Character Recognition
 
-Computer Science BSc Project. 
+Computer Science BSc - Final Year Project. 
+
+# Description
 
 The aim of this project is to demonstrate an understanding of neural networks and how they can be used in order to achieve optical character recognition. This project will explore a range of areas regarding neural networks. A program will be created that Illustrates, through the use of datasets, how a neural network can be trained to recognize handwritten characters.
 
